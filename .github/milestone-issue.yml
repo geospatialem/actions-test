@@ -1,0 +1,22 @@
+name: Create a milestone issue
+on:
+  pull_request:
+    branches:    
+      - 'master'
+jobs:
+  steps:
+    - name: Get current time
+      uses: josStorer/get-current-time@v2
+      id: current-date
+      with:
+        format: MMM-DD-YYYY
+      runs-on: ubuntu-latest
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Create issue
+      uses: JasonEtco/create-an-issue@v2
+      env:
+        GITHUB_TOKEN: ${{ secrets.github_token }}
+      with:
+        filename: .github/MILESTONE_TEMPLATE.md
+        milestone: ${{ steps.current-date.outputs.time }} ADF Website Release

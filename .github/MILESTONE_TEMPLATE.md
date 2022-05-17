@@ -1,5 +1,5 @@
 ---
-title: docs: {{ date | date('MMMM DD YYYY') }} Release Update
+title: docs: {{ date | date('MMM-DD-YYYY') }} Release Update
 assignees: geospatialem
 labels: Documentation
 ---
