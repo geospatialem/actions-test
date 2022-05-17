@@ -1,7 +1,7 @@
 ---
-title: docs&#58; {{ date | date('MMM-DD-YYYY') }} Release Update
+title: docs {{ date | date('MMM-DD-YYYY') }} Release Update
 assignees: geospatialem
-labels: Documentation
+labels: documentation
 ---
 ### Description
 This week's updates include:
