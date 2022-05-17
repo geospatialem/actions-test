@@ -1,5 +1,5 @@
 ---
-title: {{ date | date('MMM-DD-YYYY') }}
+title: Title
 assignees: geospatialem
 labels: Documentation
 ---
