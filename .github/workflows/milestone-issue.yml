@@ -2,8 +2,11 @@ name: Create a milestone issue
 on:
   push:
     branches: ['master']
+permissions:
+  contents: read
+  issues: write 
 jobs:
-  issue:
+  get-date:
     runs-on: ubuntu-latest
     steps:
       - name: Get current date
@@ -13,8 +16,14 @@ jobs:
           format: MMM-DD-YYYY
       - name: Relay date 
         run: echo ${{ steps.current-date.outputs.time }}
+  checkout:
+    runs-on: ubuntu-latest
+    steps:
       - name: Checkout
         uses: actions/checkout@v2
+  create-issue:
+    runs-on: ubuntu-latest
+    steps:
       - name: Create issue
         uses: JasonEtco/create-an-issue@v2
         env:
