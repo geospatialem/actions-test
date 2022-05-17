@@ -11,7 +11,8 @@ jobs:
         id: current-date
         with:
           format: MMM-DD-YYYY
-      - uses: actions/checkout@v2
+      - name: Relay date 
+        run: echo ${{ steps.current-date.outputs.time }}
       - uses: JasonEtco/create-an-issue@v2
         env:
           GITHUB_TOKEN: ${{ secrets.github_token }}
