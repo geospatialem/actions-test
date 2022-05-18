@@ -46,19 +46,4 @@ jobs:
                 setOutput('milestone', milestone)
                 return
               }
-            }   
-
-            # Get list of issues in milestone
-            # const {data.milestoneIssues} = await github.rest.issues.listForRepo({
-            #   owner: context.repo.owner,
-            #   repo: context.repo.repo,
-            #   milestone: 1
-            # })
-
-            # await github.rest.issues.create({
-            #   repo: context.repo.repo,
-            #   owner: context.repo.owner,
-            #   title: 'Release Update'
-            # })
-
-            # return            
+            }           
