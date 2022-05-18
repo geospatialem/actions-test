@@ -15,4 +15,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.github_token }}
         with:
           filename: .github/MILESTONE_TEMPLATE.md
-          milestone: 1
+          # Assign to Release milestone
+          milestone: 2
