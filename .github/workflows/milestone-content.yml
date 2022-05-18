@@ -11,12 +11,14 @@ jobs:
         with:
           script: |
             const {data: milestones} = await github.rest.issues.listMilestones({
-              repo: context.repo.repo
+              repo: context.repo.repo,
               state: 'open',
               sort: 'due_on',
               per_page: 100,
               direction: farthest ? 'desc' : 'asc'
             })
+
+            console.log(data.milestones)
 
             if (!milestones.length) {
               console.log('There are no open milestones in this repo, ending run.')
