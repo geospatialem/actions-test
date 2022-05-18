@@ -43,11 +43,11 @@ jobs:
             }
 
             # Get list of issues in milestone
-            const {data.milestoneIssues} = await github.rest.issues.listForRepo({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              milestone: 1
-            })
+            # const {data.milestoneIssues} = await github.rest.issues.listForRepo({
+            #   owner: context.repo.owner,
+            #   repo: context.repo.repo,
+            #   milestone: 1
+            # })
 
             await github.rest.issues.create({
               repo: context.repo.repo,
@@ -56,7 +56,7 @@ jobs:
               assignees: ['geospatialem'],
               milestone: 2,
               labels: ['Documentation', '6 - Ready to Deploy'],
-              body: '{data.milestoneIssues}'
+              body: 'test'
             })
 
             return            
