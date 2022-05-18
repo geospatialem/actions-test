@@ -57,8 +57,7 @@ jobs:
             await github.rest.issues.create({
               repo: context.repo.repo,
               owner: context.repo.owner,
-              title: 'Release Update',
-              body: '{data.milestoneIssues}'
+              title: 'Release Update'
             })
 
             return            
