@@ -6,4 +6,4 @@ labels: Documentation, 6 - Ready to Deploy
 
 ### Description
 This week's updates include:
-Milestone: [{{date | date('MMM-DD-YYYY')}}](https://github.com/geospatialem/actions-test/issues?q=is%3Aissue+milestone%3A%22{{date | date('MMM-DD-YYYY')}}+AFD+Website+Release%22+is%3Aclosed)
+[Milestone {{date | date('MMM-DD-YYYY')}}](../issues?q=is%3Aissue+milestone%3A%22{{date | date('MMM-DD-YYYY')}}+AFD+Website+Release%22+is%3Aclosed)
