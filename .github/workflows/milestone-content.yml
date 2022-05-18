@@ -26,8 +26,6 @@ jobs:
             if (!milestones.length) {
               console.log('There are no open milestones in this repo, ending run.')
               return
-            } else {
-              console.log(milestones)
             }
 
             const currentDate = new Date(Date.now())
@@ -39,6 +37,7 @@ jobs:
                   issue_number,
                   milestone: milestone.number
                 })
+                console.log(milestone, milestone.number)
                 setOutput('milestone', milestone)
                 return
               }
