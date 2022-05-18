@@ -6,7 +6,12 @@ on:
 jobs:
   add-content:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.github_token }}
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - uses: actions/github-script@v6
         with:
           script: |
