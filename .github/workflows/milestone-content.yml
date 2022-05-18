@@ -23,8 +23,6 @@ jobs:
               per_page: 100
             })
 
-            console.log({data.milestones})
-
             if (!milestones.length) {
               console.log('There are no open milestones in this repo, ending run.')
               return
@@ -35,6 +33,7 @@ jobs:
               if (milestone.due_on && new Date(milestone.due_on) > currentDate) {
                 await github.rest.issues.update({
                   repo: context.repo.repo,
+                  owner: context.repo.owner,
                   issue_number,
                   milestone: milestone.number
                 })
