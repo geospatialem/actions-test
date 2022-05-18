@@ -15,8 +15,8 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
-            const { octokit } = require("@octokit/rest");
-            const {data: milestones} = await octokit.rest.issues.listMilestones({
+            import { Octokit } from "@octokit/rest";
+            const {data: milestones} = await Octokit.rest.issues.listMilestones({
               ...repo,
               state: 'open',
               sort: 'due_on',
@@ -34,7 +34,7 @@ jobs:
             const currentDate = new Date(Date.now())
             for (const milestone of milestones) {
               if (milestone.due_on && new Date(milestone.due_on) > currentDate) {
-                await octokit.rest.issues.update({
+                await Octokit.rest.issues.update({
                   ...repo,
                   issue_number,
                   milestone: milestone.number
