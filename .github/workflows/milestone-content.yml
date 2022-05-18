@@ -30,7 +30,6 @@ jobs:
 
             const currentDate = new Date(Date.now())
             for (const milestone of milestones) {
-              console.log(milestone)
               if (milestone.due_on && new Date(milestone.due_on) > currentDate) {
                 await github.rest.issues.update({
                   repo: context.repo.repo,
@@ -39,6 +38,25 @@ jobs:
                   milestone: milestone.number
                 })
                 setOutput('milestone', milestone)
-                return
+                # return
               }
-            }            
+            }
+
+            # Get list of issues in milestone
+            const {data.milestoneIssues} = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              milestone: 1
+            })
+
+            github.rest.issues.create({
+              repo: context.repo.repo,
+              owner: context.repo.owner,
+              title: 'Docs: {{ date | date('MMM DD') }} Release Update :rocket:',
+              assignees: ['geospatialem'],
+              milestone: 2,
+              labels: ['Documentation', '6 - Ready to Deploy'],
+              body: milestoneIssues
+            })
+
+            return            
