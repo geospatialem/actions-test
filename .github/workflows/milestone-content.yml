@@ -7,10 +7,16 @@ jobs:
   add-content:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
+      - run: npm ci
+      - run: npm install @octokit/rest
       - uses: actions/github-script@v6
         with:
           script: |
-            import { Octokit } from "https://cdn.skypack.dev/@octokit/rest";
+            const { Octokit } = require("@octokit/rest");
             const {data: milestones} = await octokit.rest.issues.listMilestones({
               ...repo,
               state: 'open',
