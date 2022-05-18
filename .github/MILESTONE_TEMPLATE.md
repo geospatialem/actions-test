@@ -1,10 +1,8 @@
 ---
-title: "Docs: {{ date | date('MMM DD') }} release update"
+title: "Docs: {{ date | date('MMM DD') }} Release Update"
 assignees: geospatialem
 labels: Documentation
 ---
 ### Description
 This week's updates include:
 
-Output time:
-${{ steps.current-date.outputs.time }}

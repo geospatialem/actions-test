@@ -25,3 +25,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.github_token }}
         with:
           filename: .github/MILESTONE_TEMPLATE.md
+          milestone: ${{ steps.current-date.outputs.time }} AFD Website Release
