@@ -2,7 +2,8 @@ name: Create a milestone issue
 
 on:
   push:
-    branches: ['master']
+    branches:
+      - master
 
 permissions:
   contents: read
@@ -14,6 +15,40 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.PAT }}
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v2.1.4
+        with:
+          python-version: 3.8.6
+          architecture: x64
+
+      - name: Get version from tag
+        id: tag_name
+        run: |
+          echo ::set-output name=current_version::${GITHUB_REF#refs/tags/v}
+        shell: bash
+
+      - name: Get notes
+        id: generate_notes
+        uses: anmarkoulis/commitizen-changelog-reader@master
+        with:
+          tag_name: ${{ github.ref }}
+          changelog: CHANGELOG.md
+      
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.github_token }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          prerelease: false
+          draft: false
+          body: ${{join(fromJson(steps.generate_notes.outputs.notes).notes, '')}}
 
       - name: Create issue
         uses: JasonEtco/create-an-issue@v2
@@ -21,5 +56,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.github_token }}
         with:
           filename: .github/MILESTONE_TEMPLATE.md
+          body: |
+            ### Description
+            This week's updates include:
+            ${{join(fromJson(steps.generate_notes.outputs.notes).notes, '')}}
           # Assign to Release milestone
           milestone: 2
