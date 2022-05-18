@@ -6,16 +6,6 @@ permissions:
   contents: read
   issues: write 
 jobs:
-  get-date:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Get current date
-        uses: josStorer/get-current-time@v2
-        id: current-date
-        with:
-          format: MMM-DD-YYYY
-      - name: Relay date 
-        run: echo ${{ steps.current-date.outputs.time }}
   create-issue:
     runs-on: ubuntu-latest
     steps:
@@ -25,4 +15,3 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.github_token }}
         with:
           filename: .github/MILESTONE_TEMPLATE.md
-          milestone: ${{ steps.current-date.outputs.time }} AFD Website Release
