@@ -23,3 +23,5 @@ jobs:
       - uses: JasonEtco/create-an-issue@v2
         env:
           GITHUB_TOKEN: ${{ secrets.github_token }}
+        with:
+          filename: .github/MILESTONE_TEMPLATE.md
