@@ -48,11 +48,11 @@ jobs:
             }   
 
 
-            const {data.milestoneIssues} = await github.rest.issues.listForRepo({
+            /*const {data.milestoneIssues} = await github.rest.issues.listForRepo({
               owner: context.repo.owner,
               repo: context.repo.repo,
               milestone: 1
-            })
+            })*/
 
             await github.rest.issues.create({
               repo: context.repo.repo,
