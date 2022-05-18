@@ -52,7 +52,7 @@ jobs:
             github.rest.issues.create({
               repo: context.repo.repo,
               owner: context.repo.owner,
-              title: 'Docs: {{ date | date('MMM DD') }} Release Update :rocket:',
+              title: 'Docs: Release Update',
               assignees: ['geospatialem'],
               milestone: 2,
               labels: ['Documentation', '6 - Ready to Deploy'],
