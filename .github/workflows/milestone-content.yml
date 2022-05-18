@@ -11,7 +11,7 @@ jobs:
         with:
           script: |
             const {data: milestones} = await github.rest.issues.listMilestones({
-              ...repo,
+              repo: context.repo.repo
               state: 'open',
               sort: 'due_on',
               per_page: 100,
@@ -29,7 +29,7 @@ jobs:
             for (const milestone of milestones) {
               if (milestone.due_on && new Date(milestone.due_on) > currentDate) {
                 await github.rest.issues.update({
-                  ...repo,
+                  repo: context.repo.repo,
                   issue_number,
                   milestone: milestone.number
                 })
