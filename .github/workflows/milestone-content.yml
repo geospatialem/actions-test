@@ -23,7 +23,7 @@ jobs:
               per_page: 100
             })
 
-            console.log(data.milestones)
+            console.log({data.milestones})
 
             if (!milestones.length) {
               console.log('There are no open milestones in this repo, ending run.')
