@@ -30,6 +30,7 @@ jobs:
 
             const currentDate = new Date(Date.now())
             for (const milestone of milestones) {
+              console.log(milestone)
               if (milestone.due_on && new Date(milestone.due_on) > currentDate) {
                 await github.rest.issues.update({
                   repo: context.repo.repo,
@@ -37,7 +38,6 @@ jobs:
                   issue_number,
                   milestone: milestone.number
                 })
-                console.log(milestone, milestone.number)
                 setOutput('milestone', milestone)
                 return
               }
