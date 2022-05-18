@@ -10,6 +10,7 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
+            import { Octokit } from "https://cdn.skypack.dev/@octokit/rest";
             const {data: milestones} = await octokit.rest.issues.listMilestones({
               ...repo,
               state: 'open',
