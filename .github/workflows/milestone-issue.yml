@@ -22,9 +22,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.github_token }}
         with:
           filename: .github/MILESTONE_TEMPLATE.md
-          body: |
-            ### Description
-            This week's updates include:
-            [test](https://github.com/geospatialem/actions-test/issues?q=is%3Aissue+milestone%3A%22May-18-2022+AFD+Website+Release%22+is%3Aclosed)
           # Assign to Release milestone
           milestone: 2
