@@ -14,8 +14,7 @@ jobs:
               repo: context.repo.repo,
               state: 'open',
               sort: 'due_on',
-              per_page: 100,
-              direction: farthest ? 'desc' : 'asc'
+              per_page: 100
             })
 
             console.log(data.milestones)
