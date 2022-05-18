@@ -44,6 +44,13 @@ jobs:
                   milestone: milestone.number
                 })
                 setOutput('milestone', milestone)
-                return
               }
-            }           
+            }   
+
+            await github.rest.issues.create({
+              repo: context.repo.repo,
+              owner: context.repo.owner,
+              title: 'Release Update'
+            })
+
+            return            
