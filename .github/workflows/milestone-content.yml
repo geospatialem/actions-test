@@ -53,9 +53,7 @@ jobs:
               repo: context.repo.repo,
               owner: context.repo.owner,
               title: 'Release Update',
-              assignees: ['geospatialem'],
-              milestone: 2,
-              labels: ['Documentation', '6 - Ready to Deploy'],
+              labels: ['Documentation'],
               body: 'test'
             })
 
