@@ -49,7 +49,7 @@ jobs:
               milestone: 1
             })
 
-            github.rest.issues.create({
+            const {data.createIssue} = await github.rest.issues.create({
               repo: context.repo.repo,
               owner: context.repo.owner,
               title: 'Docs: Release Update',
