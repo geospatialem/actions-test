@@ -7,5 +7,7 @@ milestone:
 ### Description
 This week's updates include:
 
-{{tools.context.payload}}
+{{ payload.sender.login }}
+
+{{ payload }}
 
