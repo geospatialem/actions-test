@@ -1,29 +1,44 @@
 name: Create a milestone issue
+
 on:
   push:
-    branches: ['master']
+    tags:
+      - v[0-9]+.[0-9]+.[0-9]+
+
 permissions:
   contents: read
   issues: write 
+
 jobs:
   create-issue:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Build Changelog
-        id: build_changelog
-        uses: mikepenz/release-changelog-builder-action@v3.0.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Create Release
-        uses: actions/create-release@v1.1.4
+
+      - name: Update CHANGELOG
+        id: changelog
+        uses: Requarks/changelog-action@v1
         with:
-          tag_name: v0.0.1
-          release_name: v0.0.1
-          body: ${{steps.github_release.outputs.changelog}}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ github.token }}
+          tag: ${{ github.ref_name }}
+
+      - name: Create Release
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          draft: false
+          name: ${{ github.ref_name }}
+          body: ${{ steps.changelog.outputs.changes }}
+          token: ${{ github.token }}
+
+      - name: Commit CHANGELOG.md
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          branch: main
+          commit_message: 'docs: update CHANGELOG.md for ${{ github.ref_name }} [skip ci]'
+          file_pattern: CHANGELOG.md
+
       - name: Create issue
         uses: JasonEtco/create-an-issue@v2
         env:
