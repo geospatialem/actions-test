@@ -20,32 +20,32 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.github_token }}
         with:
           script: |
-            # const {data: milestones} = await github.rest.issues.listMilestones({
-            #   repo: context.repo.repo,
-            #   owner: context.repo.owner,
-            #   state: 'open',
-            #   sort: 'due_on',
-            #   per_page: 100
-            # })
+            const {data: milestones} = await github.rest.issues.listMilestones({
+              repo: context.repo.repo,
+              owner: context.repo.owner,
+              state: 'open',
+              sort: 'due_on',
+              per_page: 100
+            })
 
-            # if (!milestones.length) {
-            #   console.log('There are no open milestones in this repo, ending run.')
-            #   return
-            # }
+            if (!milestones.length) {
+              console.log('There are no open milestones in this repo, ending run.')
+              return
+            }
 
-            # const currentDate = new Date(Date.now())
-            # for (const milestone of milestones) {
-            #   if (milestone.due_on && new Date(milestone.due_on) > currentDate) {
-            #     await github.rest.issues.update({
-            #       repo: context.repo.repo,
-            #       owner: context.repo.owner,
-            #       issue_number,
-            #       milestone: milestone.number
-            #     })
-            #     setOutput('milestone', milestone)
-            #     return
-            #   }
-            # }
+            const currentDate = new Date(Date.now())
+            for (const milestone of milestones) {
+              if (milestone.due_on && new Date(milestone.due_on) > currentDate) {
+                await github.rest.issues.update({
+                  repo: context.repo.repo,
+                  owner: context.repo.owner,
+                  issue_number,
+                  milestone: milestone.number
+                })
+                setOutput('milestone', milestone)
+                return
+              }
+            }
 
             # Get list of issues in milestone
             # const {data.milestoneIssues} = await github.rest.issues.listForRepo({
@@ -54,12 +54,10 @@ jobs:
             #   milestone: 1
             # })
 
-            await github.rest.issues.create({
-              repo: context.repo.repo,
-              owner: context.repo.owner,
-              title: 'Release Update',
-              labels: ['Documentation'],
-              body: 'test'
-            })
+            # await github.rest.issues.create({
+            #   repo: context.repo.repo,
+            #   owner: context.repo.owner,
+            #   title: 'Release Update'
+            # })
 
-            return            
+            # return            
