@@ -61,7 +61,7 @@ jobs:
                   console.log("#" + milestoneIssue.number + "url: " + milestoneIssue.url);
                     
                   //li.innerText = "#[" + milestoneIssue.number + "](" + milestoneIssue.url + "): " + milestoneIssue.title;
-                  milestoneIssueList.push(milestoneIssue.number)
+                  milestoneIssueList.push("#" + milestoneIssue.number + ": " milestoneIssue.title)
                 }
                 // setOutput('milestone', milestone)
                 console.log(milestoneIssueList)
