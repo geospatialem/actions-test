@@ -20,7 +20,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.github_token }}
         with:
           script: |
-            let milestoneIssueList = ""
+            let milestoneIssueList = [];
             const {data: milestones} = await github.rest.issues.listMilestones({
               repo: context.repo.repo,
               owner: context.repo.owner,
@@ -53,19 +53,15 @@ jobs:
                   assignee: '*',
                   per_page: 100
                 })
-                console.log(milestoneIssues);
+                //console.log(milestoneIssues);
                 const currentMilestone = milestone.number
 
-                const milestoneIssueList = document.createElement("ul")
-                milestoneIssueList.setAttribute("id", "list")
 
                 for (const milestoneIssue of milestoneIssues) {
                   console.log("#" + milestoneIssue.number + "url: " + milestoneIssue.url);
                     
-                  let li = document.createElement("li");
                   //li.innerText = "#[" + milestoneIssue.number + "](" + milestoneIssue.url + "): " + milestoneIssue.title;
-                  li.innerText = milestoneIssue.number
-                  list.appendChild(li);
+                  milestoneIssueList.push(milestoneIssue.number)
                 }
                 // setOutput('milestone', milestone)
                 console.log(milestoneIssueList)
