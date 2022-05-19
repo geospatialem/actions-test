@@ -59,8 +59,8 @@ jobs:
               owner: context.repo.owner,
               assignees: ['geospatialem'],
               labels: ['Documentation', '6 - Ready to Deploy'],
-              title: 'Docs: {{ date | date('MMM DD') }} Release Update :rocket:',
-              body: '{{milestones}} More info: [Milestone {{date | date('MMM-DD-YYYY')}}](../issues?q=milestone%3A%22{{date | date('MMM-DD-YYYY')}}+AFD+Website+Release%22+is%3Aclosed)'
+              title: 'Docs: May 18 Release Update :rocket:',
+              body: 'More info: [Milestone May 18-2022](../issues?q=milestone%3A%22{{date | date('MMM-DD-YYYY')}}+AFD+Website+Release%22+is%3Aclosed)'
             })
 
             return            
