@@ -20,7 +20,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.github_token }}
         with:
           script: |
-            const {data: milestoneIssues} = [];
+            let milestoneIssueList = ""
             const {data: milestones} = await github.rest.issues.listMilestones({
               repo: context.repo.repo,
               owner: context.repo.owner,
@@ -55,19 +55,19 @@ jobs:
                 })
                 console.log(milestoneIssues);
                 const currentMilestone = milestone.number
-                for (const milestoneIssue of milestoneIssues) {
-                  console.log("#: " + milestoneIssue.number + "url: " + milestoneIssue.url);
 
-                  /* let data = ['Ram', 'Shyam', 'Sita', 'Gita' ];
-                  let list = document.getElementById("list");
+                const milestoneIssueList = document.createElement("ul")
+                milestoneIssueList.setAttribute("id", "list")
+
+                for (const milestoneIssue of milestoneIssues) {
+                  console.log("#" + milestoneIssue.number + "url: " + milestoneIssue.url);
                     
-                  data.forEach((item)=>{
-                    let li = document.createElement("li");
-                    li.innerText = item;
-                    list.appendChild(li);
-                  }) */
+                  let li = document.createElement("li");
+                  li.innerText = "#[" + milestoneIssue.number + "](" + milestoneIssue.url + "): " + milestoneIssue.title;
+                  list.appendChild(li);
                 }
                 // setOutput('milestone', milestone)
+                console.log(milestoneIssueList)
               }
             }
 
@@ -82,8 +82,7 @@ jobs:
               body: `### Description
               This week's updates include:
 
-              <ul id="milestoneDiv">
-              </ul>
+              milestoneIssueList
 
               More info: [Milestone: ` + currentMonth + `-` + currentDay + `-` + currentYear + `](../issues?q=milestone%3A%22` + currentMonth + `-` + currentDay + `-` + currentYear + `+AFD+Website+Release%22+is%3Aclosed)`
             })*/
