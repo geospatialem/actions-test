@@ -27,19 +27,16 @@ jobs:
               sort: 'due_on',
               per_page: 100
             })
-
             if (!milestones.length) {
               console.log('There are no open milestones in this repo, ending run.')
               return
             }
-
             const currentDate = new Date(Date.now())
             const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
             const currentMonth = monthNames[currentDate.getMonth()]
             const currentDay = currentDate.getDate()
             const currentYear = currentDate.getFullYear()
             const milestoneIssueList = []
-
             for (const milestone of milestones) {
               // console.log(milestone.title, milestone.number)
               // console.log(milestone.due_on, new Date(milestone.due_on), currentDate)
@@ -55,8 +52,6 @@ jobs:
                 })
                 //console.log(milestoneIssues);
                 const currentMilestone = milestone.number
-
-
                 for (const milestoneIssue of milestoneIssues) {
                   console.log("#" + milestoneIssue.number + "url: " + milestoneIssue.url);
                     
