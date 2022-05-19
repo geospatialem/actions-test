@@ -20,8 +20,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.github_token }}
         with:
           script: |
-            let currentMilestone = 3;
-
             const {data: milestones} = await github.rest.issues.listMilestones({
               repo: context.repo.repo,
               owner: context.repo.owner,
@@ -46,21 +44,21 @@ jobs:
               // console.log(milestone.due_on, new Date(milestone.due_on), currentDate)
               if (milestone.due_on && new Date(milestone.due_on) > currentDate) {
                 console.log("milestone number: " + milestone.number)
-                /*await github.rest.issues.listForRepo({
+                const {data: milestoneIssues} = await github.rest.issues.listForRepo({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
                   milestone: milestone.number
-                })*/
+                })
                 currentMilestone = milestone.number
                 // setOutput('milestone', milestone)
               }
             }   
 
-            const {data: milestoneIssues} = await github.rest.issues.listForRepo({
+            /*const {data: milestoneIssues} = await github.rest.issues.listForRepo({
               owner: context.repo.owner,
               repo: context.repo.repo,
               milestone: currentMilestone
-            })
+            })*/
 
             console.log(milestoneIssues);
 
