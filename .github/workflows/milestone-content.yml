@@ -56,7 +56,7 @@ jobs:
                 for (const milestoneIssue of milestoneIssues) {
                   console.log("#" + milestoneIssue.number + "url: " + milestoneIssue.url);
 
-                  milestoneIssueList.push("#" + milestoneIssue.number + ": " + milestoneIssue.title)
+                  milestoneIssueList.push("<li>#" + milestoneIssue.number + ": " + milestoneIssue.title + "</li>")
                 }
                 // setOutput('milestone', milestone)
                 console.log(milestoneIssueList)
@@ -74,9 +74,9 @@ jobs:
               body: `### Description
               This week's updates include:
 
-              <ul>
-                <li>test</li>
-              </ul>
+              <ul>` +
+                milestoneIssueList
+              + `</ul>
 
               More info: [Milestone: ` + currentMonth + `-` + currentDay + `-` + currentYear + `](../issues?q=milestone%3A%22` + currentMonth + `-` + currentDay + `-` + currentYear + `+AFD+Website+Release%22+is%3Aclosed)`
             })
