@@ -44,22 +44,26 @@ jobs:
               // console.log(milestone.due_on, new Date(milestone.due_on), currentDate)
               if (milestone.due_on && new Date(milestone.due_on) > currentDate) {
                 console.log("milestone number: " + milestone.number);
-                await github.rest.issues.listForRepo({
+                /*await github.rest.issues.listForRepo({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
                   milestone: milestone.number
-                })
+                })*/
                 const currentMilestone = milestone.number
-                setOutput('milestone', milestone)
+                // setOutput('milestone', milestone)
               }
             }   
 
 
-            /*const {data.milestoneIssues} = await github.rest.issues.listForRepo({
+            const {data.milestoneIssues} = await github.rest.issues.listForRepo({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              milestone: 1
-            })*/
+              milestone: currentMilestone
+            })
+
+            for (const milestoneIssue of milestoneIssues) {
+              console.log(milestoneIssue);
+            }
 
             /*await github.rest.issues.create({
               repo: context.repo.repo,
