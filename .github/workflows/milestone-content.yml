@@ -63,9 +63,7 @@ jobs:
               }
             }
 
-            
-
-            await github.rest.issues.create({
+            /*await github.rest.issues.create({
               repo: context.repo.repo,
               owner: context.repo.owner,
               assignees: ['geospatialem'],
@@ -74,9 +72,9 @@ jobs:
               body: `### Description
               This week's updates include:`
 
-              currentMonth
+              milestoneIssueLis
 
               `More info: [Milestone: ` + currentMonth + `-` + currentDay + `-` + currentYear + `](../issues?q=milestone%3A%22` + currentMonth + `-` + currentDay + `-` + currentYear + `+AFD+Website+Release%22+is%3Aclosed)`
-            })
+            })*/
 
             return            
