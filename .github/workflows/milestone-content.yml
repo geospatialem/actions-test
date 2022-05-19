@@ -52,13 +52,15 @@ jobs:
                 })
                 //console.log(milestoneIssues);
                 const currentMilestone = milestone.number
+                milestoneIssueList.push(<ul>)
                 for (const milestoneIssue of milestoneIssues) {
                   console.log("#" + milestoneIssue.number + "url: " + milestoneIssue.url);
                     
                   //li.innerText = "#[" + milestoneIssue.number + "](" + milestoneIssue.url + "): " + milestoneIssue.title;
-                  milestoneIssueList.push("#" + milestoneIssue.number + ": " + milestoneIssue.title)
+                  milestoneIssueList.push(<li>"#" + milestoneIssue.number + ": " + milestoneIssue.title</li>)
                 }
                 // setOutput('milestone', milestone)
+                milestoneIssueList.push(<ul>)
                 console.log(milestoneIssueList)
               }
             }
