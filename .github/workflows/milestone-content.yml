@@ -63,7 +63,8 @@ jobs:
                   console.log("#" + milestoneIssue.number + "url: " + milestoneIssue.url);
                     
                   let li = document.createElement("li");
-                  li.innerText = "#[" + milestoneIssue.number + "](" + milestoneIssue.url + "): " + milestoneIssue.title;
+                  //li.innerText = "#[" + milestoneIssue.number + "](" + milestoneIssue.url + "): " + milestoneIssue.title;
+                  li.innerText = milestoneIssue.number
                   list.appendChild(li);
                 }
                 // setOutput('milestone', milestone)
