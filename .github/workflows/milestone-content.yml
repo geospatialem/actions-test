@@ -63,9 +63,9 @@ jobs:
 
             console.log(milestoneIssues);
 
-            for (const milestoneIssue of milestoneIssues) {
+            /*for (const milestoneIssue of milestoneIssues) {
               console.log(milestoneIssue)
-            }
+            }*/
 
             /*await github.rest.issues.create({
               repo: context.repo.repo,
