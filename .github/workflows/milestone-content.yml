@@ -57,7 +57,7 @@ jobs:
             await getDates ({
               const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
               const currentMonth = monthNames[currentDate.getMonth()])
-              const currentDay = currentDate.getDate();
+              const currentDay = currentDate.getDate()
               const titleString = "Docs: " + currentMonth + " " + currentDay + "Release Update 🚀"
             )}
 
