@@ -70,11 +70,11 @@ jobs:
               labels: ['Documentation', '6 - Ready to Deploy'],
               title: "Docs: " + currentMonth + " " + currentDay + " Release Update 🚀",
               body: `### Description
-              This week's updates include:`
+              This week's updates include:
 
-              milestoneIssueList
+              ['#39: Docs: May 19 Release Update 🚀', '#12: Docs: May 18 Release Update 🚀','#11: Docs: May 18 Release Update 🚀']
 
-              `More info: [Milestone: ` + currentMonth + `-` + currentDay + `-` + currentYear + `](../issues?q=milestone%3A%22` + currentMonth + `-` + currentDay + `-` + currentYear + `+AFD+Website+Release%22+is%3Aclosed)`
+              More info: [Milestone: ` + currentMonth + `-` + currentDay + `-` + currentYear + `](../issues?q=milestone%3A%22` + currentMonth + `-` + currentDay + `-` + currentYear + `+AFD+Website+Release%22+is%3Aclosed)`
             })
 
             return            
