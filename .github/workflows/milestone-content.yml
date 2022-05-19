@@ -20,7 +20,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.github_token }}
         with:
           script: |
-            let currentMilestone = 1;
+            let currentMilestone = 3;
 
             const {data: milestones} = await github.rest.issues.listMilestones({
               repo: context.repo.repo,
@@ -61,6 +61,8 @@ jobs:
               repo: context.repo.repo,
               milestone: currentMilestone
             })
+
+            console.log(milestoneIssues);
 
             for (const milestoneIssue of milestoneIssues) {
               console.log(milestoneIssue)
