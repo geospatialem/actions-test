@@ -65,9 +65,18 @@ jobs:
               milestone: currentMilestone
             })*/
 
-            /*for (const milestoneIssue of milestoneIssues) {
-              console.log(milestoneIssue)
-            }*/
+            for (const milestoneIssue of milestoneIssues) {
+              console.log("#: " + milestoneIssue.number + "url: " + milestoneIssue.url);
+
+              /* let data = ['Ram', 'Shyam', 'Sita', 'Gita' ];
+              let list = document.getElementById("list");
+                
+              data.forEach((item)=>{
+                let li = document.createElement("li");
+                li.innerText = item;
+                list.appendChild(li);
+              }) */
+            }
 
             /*await github.rest.issues.create({
               repo: context.repo.repo,
