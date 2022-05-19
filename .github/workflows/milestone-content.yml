@@ -20,7 +20,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.github_token }}
         with:
           script: |
-            let milestoneIssueList = [];
             const {data: milestones} = await github.rest.issues.listMilestones({
               repo: context.repo.repo,
               owner: context.repo.owner,
@@ -39,6 +38,7 @@ jobs:
             const currentMonth = monthNames[currentDate.getMonth()]
             const currentDay = currentDate.getDate()
             const currentYear = currentDate.getFullYear()
+            const milestoneIssueList
 
             for (const milestone of milestones) {
               // console.log(milestone.title, milestone.number)
