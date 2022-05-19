@@ -57,13 +57,14 @@ jobs:
             const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
             const currentMonth = monthNames[currentDate.getMonth()])
             const currentDay = currentDate.getDate();
+            const titleString = "Docs: " + currentMonth + " " + currentDay + "Release Update 🚀"
 
             await github.rest.issues.create({
               repo: context.repo.repo,
               owner: context.repo.owner,
               assignees: ['geospatialem'],
               labels: ['Documentation', '6 - Ready to Deploy'],
-              title: "Docs: " + currentMonth + " " + currentDay " Release Update 🚀",
+              title: titleString,
               body: "More info: [Milestone: May-18-2022](../issues?q=milestone%3A%22May-18-2022+AFD+Website+Release%22+is%3Aclosed)"
             })
 
