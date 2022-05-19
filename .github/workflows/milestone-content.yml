@@ -20,6 +20,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.github_token }}
         with:
           script: |
+            // Get all milestones
             const {data: milestones} = await github.rest.issues.listMilestones({
               repo: context.repo.repo,
               owner: context.repo.owner,
@@ -27,21 +28,25 @@ jobs:
               sort: 'due_on',
               per_page: 100
             })
+
             if (!milestones.length) {
               console.log('There are no open milestones in this repo, ending run.')
               return
             }
+
+            // Constants
             const currentDate = new Date(Date.now())
             const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
             const currentMonth = monthNames[currentDate.getMonth()]
             const currentDay = currentDate.getDate()
             const currentYear = currentDate.getFullYear()
             const milestoneIssueList = []
+
+            // Get current milestone
             for (const milestone of milestones) {
-              // console.log(milestone.title, milestone.number)
-              // console.log(milestone.due_on, new Date(milestone.due_on), currentDate)
               if (milestone.due_on && new Date(milestone.due_on) > currentDate) {
-                console.log("milestone number: " + milestone.number)
+
+                // Get list of Issues in the current milestone
                 let {data: milestoneIssues} = await github.rest.issues.listForRepo({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
@@ -50,21 +55,31 @@ jobs:
                   assignee: '*',
                   per_page: 100
                 })
-                //console.log(milestoneIssues);
-                const currentMilestone = milestone.number
 
-                for (const milestoneIssue of milestoneIssues) {
-                  console.log("#" + milestoneIssue.number + "url: " + milestoneIssue.url);
+                // TODO: Get list of PRs in the current milestone
+                let {data: milestonePrs} = await github.rest.pulls.listForRepo({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  milestone: milestone.number,
+                  state: 'all',
+                  assignee: '*',
+                  per_page: 100
+                })
 
+                // Create list items for each issue associated with the milestone
+                // TODO: Remove ","?
+                for (let milestoneIssue of milestoneIssues) {
                   milestoneIssueList.push("<li>#" + milestoneIssue.number + ": " + milestoneIssue.title + "</li>")
                 }
-                // setOutput('milestone', milestone)
-                console.log(milestoneIssueList)
+
+                // TODO: List PRs for each issue associated with the milestone
+                for (let milestonePr of milestonePrs) {
+                  milestoneIssueList.push("<li>#" + milestonePr.number + ": " + milestonePr.title + "</li>")
+                }
               }
             }
 
-            const arrayTest = ['#39: Docs: May 19 Release Update 🚀', '#12: Docs: May 18 Release Update 🚀','#11: Docs: May 18 Release Update 🚀'];
-
+            // Create the issue
             await github.rest.issues.create({
               repo: context.repo.repo,
               owner: context.repo.owner,
