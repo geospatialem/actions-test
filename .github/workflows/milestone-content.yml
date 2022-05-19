@@ -38,7 +38,7 @@ jobs:
             const currentMonth = monthNames[currentDate.getMonth()]
             const currentDay = currentDate.getDate()
             const currentYear = currentDate.getFullYear()
-            const milestoneIssueList
+            const milestoneIssueList = []
 
             for (const milestone of milestones) {
               // console.log(milestone.title, milestone.number)
