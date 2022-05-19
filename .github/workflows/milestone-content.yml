@@ -50,6 +50,7 @@ jobs:
                   repo: context.repo.repo,
                   milestone: milestone.number
                 })
+                console.log(milestoneIssues);
                 const currentMilestone = milestone.number
                 // setOutput('milestone', milestone)
               }
@@ -60,8 +61,6 @@ jobs:
               repo: context.repo.repo,
               milestone: currentMilestone
             })*/
-
-            console.log(milestoneIssues);
 
             /*for (const milestoneIssue of milestoneIssues) {
               console.log(milestoneIssue)
