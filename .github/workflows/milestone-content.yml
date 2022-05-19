@@ -63,8 +63,8 @@ jobs:
               owner: context.repo.owner,
               assignees: ['geospatialem'],
               labels: ['Documentation', '6 - Ready to Deploy'],
-              title: "Docs: " + currentMonth + " " + currentDay " Release Update 🚀", //Docs: MMM DD Release Update
-              body: "More info: [Milestone " + currentMonth + "-" + currentDay + "-2022](../issues?q=milestone%3A%22" + currentMonth + "-" + currentDay + "-2022+AFD+Website+Release%22+is%3Aclosed)"
+              title: "Docs: " + currentMonth + " " + currentDay " Release Update 🚀",
+              body: "More info: [Milestone: May-18-2022](../issues?q=milestone%3A%22May-18-2022+AFD+Website+Release%22+is%3Aclosed)"
             })
 
             return            
