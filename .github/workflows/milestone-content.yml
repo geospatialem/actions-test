@@ -65,11 +65,11 @@ jobs:
               assignees: ['geospatialem'],
               labels: ['Documentation', '6 - Ready to Deploy'],
               title: "Docs: " + currentMonth + " " + currentDay + " Release Update 🚀",
-              body: `"###Description
+              body: `###Description
               This week's updates include:
               *Dynamic content coming soon*
 
-              More info: [Milestone: " + currentMonth + "-" + currentDay + "-" + currentYear + "](../issues?q=milestone%3A%22" + currentMonth + "-" + currentDay + "-" + currentYear + "+AFD+Website+Release%22+is%3Aclosed)"`
+              More info: [Milestone: ` + currentMonth + `-` + currentDay + `-` + currentYear + `](../issues?q=milestone%3A%22` + currentMonth + `-` + currentDay + `-` + currentYear + `+AFD+Website+Release%22+is%3Aclosed)`
             })
 
             return            
