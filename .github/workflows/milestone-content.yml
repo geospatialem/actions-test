@@ -63,7 +63,7 @@ jobs:
             })
 
             for (const milestoneIssue of milestoneIssues) {
-              console.table(milestoneIssue)
+              console.log(milestoneIssue)
             }
 
             /*await github.rest.issues.create({
