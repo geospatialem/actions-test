@@ -40,14 +40,14 @@ jobs:
             const currentYear = currentDate.getFullYear()
 
             for (const milestone of milestones) {
-              console.log(milestone)
               if (milestone.due_on && new Date(milestone.due_on) > currentDate) {
-                await github.rest.issues.update({
-                  repo: context.repo.repo,
+                await github.rest.issues.listForRepo({
                   owner: context.repo.owner,
-                  issue_number,
+                  repo: context.repo.repo,
                   milestone: milestone.number
                 })
+                const currentMilestone = milestone.number
+                console.log('Current milestone is set to: ' + currentMilestone);
                 setOutput('milestone', milestone)
               }
             }   
@@ -65,7 +65,7 @@ jobs:
               assignees: ['geospatialem'],
               labels: ['Documentation', '6 - Ready to Deploy'],
               title: "Docs: " + currentMonth + " " + currentDay + " Release Update 🚀",
-              body: `###Description
+              body: `### Description
               This week's updates include:
               *Dynamic content coming soon*
 
