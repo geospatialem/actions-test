@@ -57,14 +57,14 @@ jobs:
                 })
 
                 // TODO: Get list of PRs in the current milestone
-                let {data: milestonePrs} = await github.rest.pulls.listForRepo({
+                /*let {data: milestonePrs} = await github.rest.pulls.listForRepo({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
                   milestone: milestone.number,
                   state: 'all',
                   per_page: 100
                 })
-                console.log(milestonePrs)
+                console.log(milestonePrs)*/
 
                 // Create list items for each issue associated with the milestone
                 // TODO: Remove ","?
