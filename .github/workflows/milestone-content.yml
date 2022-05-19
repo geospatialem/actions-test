@@ -40,7 +40,8 @@ jobs:
             const currentYear = currentDate.getFullYear()
 
             for (const milestone of milestones) {
-              // console.log(milestone.title, milestone.number);
+              console.log(milestone.title, milestone.number)
+              console.log(milestone.due_on, new Date(milestone.due_on), currentDate)
               if (milestone.due_on && new Date(milestone.due_on) > currentDate) {
                 console.log("milestone number: " + milestone.number);
                 await github.rest.issues.listForRepo({
