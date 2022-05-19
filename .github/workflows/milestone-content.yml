@@ -64,7 +64,7 @@ jobs:
               owner: context.repo.owner,
               assignees: ['geospatialem'],
               labels: ['Documentation', '6 - Ready to Deploy'],
-              title: "Docs: " + currentMonth + " 18 Release Update 🚀"
+              title: "Docs: May 18 Release Update 🚀"
               body: "More info: [Milestone: May-18-2022](../issues?q=milestone%3A%22May-18-2022+AFD+Website+Release%22+is%3Aclosed)"
             })
 
