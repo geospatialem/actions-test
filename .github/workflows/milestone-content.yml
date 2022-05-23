@@ -77,7 +77,6 @@ jobs:
                 for (let milestonePr of milestonePrs) {
                   if (milestonePr.milestone && milestonePr.merged_at) {
                     if (milestonePr.milestone.number === milestone.number) {
-                      console.log(milestonePr.)
                       milestoneIssueList.push("<li>#" + milestonePr.number + ": " + milestonePr.title + "</li>")
                     }
                   }
