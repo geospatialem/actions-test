@@ -61,7 +61,7 @@ jobs:
                 let {data: milestonePrs} = await github.rest.pulls.list({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
-                  state: 'all',
+                  state: 'closed',
                   direction: 'desc',
                   per_page: 100
                 })
@@ -76,11 +76,9 @@ jobs:
                 // TODO: Remove ","?
                 for (let milestonePr of milestonePrs) {
                   if (milestonePr.milestone) {
-                    //if (milestonePr.merged) {
-                      if (milestonePr.milestone.number === milestone.number) {
-                        milestoneIssueList.push("<li>#" + milestonePr.number + ": " + milestonePr.title + "</li>")
-                      }
-                    //}
+                    if (milestonePr.milestone.number === milestone.number) {
+                      milestoneIssueList.push("<li>#" + milestonePr.number + ": " + milestonePr.title + "</li>")
+                    }
                   }
                   
                 }
