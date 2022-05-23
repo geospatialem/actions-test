@@ -1,9 +1,8 @@
 name: Weekly release issue
 
 on:
-  push:
-    branches:
-      - master
+  schedule:
+    - cron: "59 7 * * 2"
 
 permissions:
   contents: read
@@ -96,7 +95,7 @@ jobs:
               This week's updates include:` +
               milestoneIssueList + `
               
-              
+
               More info: [Milestone: ` + currentMonth + `-` + currentDay + `-` + currentYear + `](../issues?q=milestone%3A%22` + currentMonth + `-` + currentDay + `-` + currentYear + `+AFD+Website+Release%22+is%3Aclosed)`
             })
 
