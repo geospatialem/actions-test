@@ -1,4 +1,4 @@
-name: Milestone content
+lname: Milestone content
 on:
   push:
     branches:
@@ -69,7 +69,7 @@ jobs:
                 // Create list items for each issue associated with the milestone
                 // TODO: Remove ","?
                 for (let milestoneIssue of milestoneIssues) {
-                  milestoneIssueList.push("<li>#" + milestoneIssue.number + ": " + milestoneIssue.title + "</li>")
+                  milestoneIssueList.push("</li><li>#" + milestoneIssue.number + ": " + milestoneIssue.title)
                 }
 
                 // List PRs for each issue associated with the milestone
@@ -77,7 +77,7 @@ jobs:
                 for (let milestonePr of milestonePrs) {
                   if (milestonePr.milestone && milestonePr.merged_at) {
                     if (milestonePr.milestone.number === milestone.number) {
-                      milestoneIssueList.push("<li>#" + milestonePr.number + ": " + milestonePr.title + "</li>")
+                      milestoneIssueList.push("</li><li>#" + milestonePr.number + ": " + milestonePr.title)
                     }
                   }
                   
@@ -97,7 +97,8 @@ jobs:
 
               <ul>` +
                 milestoneIssueList
-              + `</ul>
+              + `</li></ul>
+
 
               More info: [Milestone: ` + currentMonth + `-` + currentDay + `-` + currentYear + `](../issues?q=milestone%3A%22` + currentMonth + `-` + currentDay + `-` + currentYear + `+AFD+Website+Release%22+is%3Aclosed)`
             })
