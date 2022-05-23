@@ -76,9 +76,9 @@ jobs:
                 // TODO: Remove ","?
                 for (let milestonePr of milestonePrs) {
                   console.log(milestonePr.number + " - " + milestonePr.milestone.number)
-                  if (milestonePr.milestone.number !== null && milestonePr.milestone.number === milestone.number) {
+                  /*if (milestonePr.milestone.number !== null && milestonePr.milestone.number === milestone.number) {
                     milestoneIssueList.push("<li>#" + milestonePr.number + ": " + milestonePr.title + "</li>")
-                  }
+                  }*/
                 }
               }
             }
