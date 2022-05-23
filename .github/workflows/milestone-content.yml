@@ -1,4 +1,4 @@
-lname: Milestone content
+name: Milestone content
 on:
   push:
     branches:
