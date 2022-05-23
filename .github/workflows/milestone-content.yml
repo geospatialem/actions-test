@@ -68,15 +68,15 @@ jobs:
                 })
 
                 // Create list items for each issue associated with the milestone
-                for (let milestoneIssue of milestoneIssues) {
-                  milestoneIssueList.push("</li><li>#" + milestoneIssue.number + ": " + milestoneIssue.title)
-                }
+                /*for (let milestoneIssue of milestoneIssues) {
+                  milestoneIssueList.push("</li><li>" + milestoneIssue.html_url + ": " + milestoneIssue.title)
+                }*/
 
                 // List PRs for each issue associated with the milestone
                 for (let milestonePr of milestonePrs) {
                   if (milestonePr.milestone && milestonePr.merged_at) {
                     if (milestonePr.milestone.number === milestone.number) {
-                      milestoneIssueList.push("</li><li>#" + milestonePr.number + ": " + milestonePr.title)
+                      milestoneIssueList.push("</li><li>" + milestonePr.html_url + ": " + milestonePr.title)
                     }
                   }
                   
