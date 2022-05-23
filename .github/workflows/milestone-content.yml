@@ -60,18 +60,18 @@ jobs:
                 console.log("milestoneIssues", milestoneIssues)
 
                 // TODO: Get list of PRs in the current milestone
-                /*let {data: milestonePrs} = await github.rest.pulls.list({
+                let {data: milestonePrs} = await github.rest.pulls.list({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
                   state: 'all',
                   per_page: 100
                 })
-                console.log("milestonePrs", milestonePrs)*/
+                console.log("milestonePrs", milestonePrs)
 
                 // Create list items for each issue associated with the milestone
                 // TODO: Remove ","?
                 for (let milestoneIssue of milestoneIssues) {
-                  milestoneIssueList.push("- #" + milestoneIssue.number + ": " + milestoneIssue.title)
+                  milestoneIssueList.push("<li>#" + milestoneIssue.number + ": " + milestoneIssue.title + "</li>")
                 }
 
                 // TODO: List PRs for each issue associated with the milestone
@@ -91,9 +91,9 @@ jobs:
               body: `### Description
               This week's updates include:
 
-              <br>` +
+              <ul>` +
                 milestoneIssueList
-              + `<br>
+              + `<ul>
 
               More info: [Milestone: ` + currentMonth + `-` + currentDay + `-` + currentYear + `](../issues?q=milestone%3A%22` + currentMonth + `-` + currentDay + `-` + currentYear + `+AFD+Website+Release%22+is%3Aclosed)`
             })
