@@ -75,9 +75,9 @@ jobs:
                 // List PRs for each issue associated with the milestone
                 // TODO: Remove ","?
                 for (let milestonePr of milestonePrs) {
-                  console.log("merged:" +  milestonePr.merged)
-                  if (milestonePr.milestone) {
+                  if (milestonePr.milestone && milestonePr.merged_at) {
                     if (milestonePr.milestone.number === milestone.number) {
+                      console.log(milestonePr.)
                       milestoneIssueList.push("<li>#" + milestonePr.number + ": " + milestonePr.title + "</li>")
                     }
                   }
