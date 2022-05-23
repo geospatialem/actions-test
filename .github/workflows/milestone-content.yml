@@ -76,11 +76,11 @@ jobs:
                 // TODO: Remove ","?
                 for (let milestonePr of milestonePrs) {
                   if (milestonePr.milestone) {
-                    if (milestonePr.merged) {
+                    //if (milestonePr.merged) {
                       if (milestonePr.milestone.number === milestone.number) {
                         milestoneIssueList.push("<li>#" + milestonePr.number + ": " + milestonePr.title + "</li>")
                       }
-                    }
+                    //}
                   }
                   
                 }
