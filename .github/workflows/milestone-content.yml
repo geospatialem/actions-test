@@ -75,9 +75,7 @@ jobs:
                 for (let milestonePr of milestonePrs) {
                   console.log(milestonePr.number)
                   console.log(milestonePr.milestone)
-                  /*if (milestonePr.milestone.number !== null && milestonePr.milestone.number === milestone.number) {
-                    milestoneIssueList.push("<li>#" + milestonePr.number + ": " + milestonePr.title + "</li>")
-                  }*/
+                  milestoneIssueList.push("<li>#" + milestonePr.number + ": " + milestonePr.title + "</li>")
                 }
               }
             }
