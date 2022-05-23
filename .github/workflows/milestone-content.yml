@@ -53,6 +53,7 @@ jobs:
                   milestone: milestone.number,
                   state: 'all',
                   assignee: '*',
+                  direction: 'desc',
                   per_page: 100
                 })
 
@@ -61,6 +62,7 @@ jobs:
                   owner: context.repo.owner,
                   repo: context.repo.repo,
                   state: 'all',
+                  direction: 'desc',
                   per_page: 100
                 })
 
@@ -73,7 +75,7 @@ jobs:
                 // List PRs for each issue associated with the milestone
                 // TODO: Remove ","?
                 for (let milestonePr of milestonePrs) {
-                  if (milestonePr.milestone) {
+                  if (milestonePr.milestone && milestonePr.merged) {
                     if (milestonePr.milestone.number === milestone.number) {
                       milestoneIssueList.push("<li>#" + milestonePr.number + ": " + milestonePr.title + "</li>")
                     }
