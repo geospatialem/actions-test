@@ -51,7 +51,7 @@ jobs:
                   owner: context.repo.owner,
                   repo: context.repo.repo,
                   milestone: milestone.number,
-                  state: 'all',
+                  state: 'closed',
                   assignee: '*',
                   direction: 'desc',
                   per_page: 100
@@ -75,6 +75,7 @@ jobs:
                 // List PRs for each issue associated with the milestone
                 // TODO: Remove ","?
                 for (let milestonePr of milestonePrs) {
+                  console.log("merged:" +  milestonePr.merged)
                   if (milestonePr.milestone) {
                     if (milestonePr.milestone.number === milestone.number) {
                       milestoneIssueList.push("<li>#" + milestonePr.number + ": " + milestonePr.title + "</li>")
