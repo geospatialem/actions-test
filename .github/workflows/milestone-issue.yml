@@ -1,25 +1,93 @@
-name: Create a milestone issue
+name: Weekly release issue
 
 on:
-  schedule:
-    - cron: "59 7 * * 3"
+  push:
+    branches:
+      - "master"
 
 permissions:
   contents: read
   issues: write 
 
 jobs:
-  create-issue:
+  add-content:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Create issue
-        uses: JasonEtco/create-an-issue@v2
+      - uses: actions/github-script@v6
         env:
           GITHUB_TOKEN: ${{ secrets.github_token }}
         with:
-          filename: .github/MILESTONE_TEMPLATE.md
-          # Assign to Release milestone
-          milestone: 2
+          script: |
+            // Get all milestones
+            const {data: milestones} = await github.rest.issues.listMilestones({
+              repo: context.repo.repo,
+              owner: context.repo.owner,
+              state: 'open',
+              sort: 'due_on',
+              per_page: 100
+            })
+
+            if (!milestones.length) {
+              console.log('There are no open milestones in this repo, ending run.')
+              return
+            }
+
+            // Constants
+            const currentDate = new Date(Date.now())
+            const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+            const currentMonth = monthNames[currentDate.getMonth()]
+            const currentDay = currentDate.getDate()
+            const currentYear = currentDate.getFullYear()
+            const milestoneIssueList = []
+            let activeMilestone
+
+            // Get current milestone
+            for (const milestone of milestones) {
+
+              // Get milestone date
+              const milestoneDate = new Date(milestone.due_on);
+
+              // If dates align, continue
+              if (milestoneDate.getFullYear() === currentDate.getFullYear() && milestoneDate.getMonth() === currentDate.getMonth() && milestoneDate.getDate() === currentDate.getDate()) {
+
+                activeMilestone = milestone.number
+     
+                // Get list of PRs in the current milestone
+                let {data: milestonePrs} = await github.rest.pulls.list({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  state: 'closed',
+                  direction: 'desc',
+                  per_page: 100
+                })
+
+                // List PRs for each issue associated with the milestone
+                for (let milestonePr of milestonePrs) {
+                  if (milestonePr.milestone && milestonePr.merged_at) {
+                    if (milestonePr.milestone.number === milestone.number) {
+                      milestoneIssueList.push("<br>#" + milestonePr.number + " - " + milestonePr.title)
+                    }
+                  }
+                }
+              }
+            }
+
+            // Create the issue
+            await github.rest.issues.create({
+              repo: context.repo.repo,
+              owner: context.repo.owner,
+              labels: ['Documentation', '6 - Ready to Deploy'],
+              title: "Docs: " + currentMonth + " " + currentDay + " Release Update 🚀",
+              milestone: activeMilestone,
+              body: `### Description
+              This week's updates include:` +
+              milestoneIssueList + `
+              
+
+              More info: [Milestone: ` + currentMonth + `-` + currentDay + `-` + currentYear + `](../issues?q=milestone%3A%22` + currentMonth + `-` + currentDay + `-` + currentYear + `+AFD+Website+Release%22+is%3Aclosed)`
+            })
+
+            return 
