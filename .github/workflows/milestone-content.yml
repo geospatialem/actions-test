@@ -53,7 +53,7 @@ jobs:
               // If dates align, continue
               if (milestoneDate.getFullYear() === currentDate.getFullYear() && milestoneDate.getMonth() === currentDate.getMonth() && milestoneDate.getDate() === currentDate.getDate()) {
 
-                let activeMilestone = milestone
+                activeMilestone.push(milestone)
      
                 // Get list of Issues in the current milestone
                 let {data: milestoneIssues} = await github.rest.issues.listForRepo({
@@ -91,7 +91,7 @@ jobs:
               }
             }
 
-            console.log(activeMilestone)
+            console.log(activeMilestone[0].number)
 
             // Create the issue
             await github.rest.issues.create({
@@ -100,7 +100,7 @@ jobs:
               assignees: ['geospatialem'],
               labels: ['Documentation', '6 - Ready to Deploy'],
               title: "Docs: " + currentMonth + " " + currentDay + " Release Update 🚀",
-              milestone: activeMilestone.number,
+              milestone: activeMilestone[0].number,
               body: `### Description
               This week's updates include:` +
               milestoneIssueList + `
