@@ -1,9 +1,8 @@
 name: Weekly release issue
 
 on:
-  push:
-    branches:
-      - master
+  schedule:
+    - cron: "59 7 * * 3"
 
 permissions:
   contents: read
@@ -90,8 +89,6 @@ jobs:
                 }
               }
             }
-
-            console.log(activeMilestone)
 
             // Create the issue
             await github.rest.issues.create({
