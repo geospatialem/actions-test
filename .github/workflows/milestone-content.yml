@@ -45,11 +45,13 @@ jobs:
 
             // Get current milestone
             for (const milestone of milestones) {
+
               // Get milestone date
               const milestoneDate = new Date(milestone.due_on);
+
               // If dates align, continue
               if (milestoneDate.getFullYear() === currentDate.getFullYear() && milestoneDate.getMonth() === currentDate.getMonth() && milestoneDate.getDate() === currentDate.getDate()) {
-                console.log(milestone.number);
+     
                 // Get list of Issues in the current milestone
                 let {data: milestoneIssues} = await github.rest.issues.listForRepo({
                   owner: context.repo.owner,
@@ -93,7 +95,7 @@ jobs:
               assignees: ['geospatialem'],
               labels: ['Documentation', '6 - Ready to Deploy'],
               title: "Docs: " + currentMonth + " " + currentDay + " Release Update 🚀",
-              milestone: 2,
+              milestone: milestone.number,
               body: `### Description
               This week's updates include:` +
               milestoneIssueList + `
