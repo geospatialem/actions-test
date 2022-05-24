@@ -42,6 +42,7 @@ jobs:
             const currentDay = currentDate.getDate()
             const currentYear = currentDate.getFullYear()
             const milestoneIssueList = []
+            let activeMilestone
 
             // Get current milestone
             for (const milestone of milestones) {
@@ -52,7 +53,7 @@ jobs:
               // If dates align, continue
               if (milestoneDate.getFullYear() === currentDate.getFullYear() && milestoneDate.getMonth() === currentDate.getMonth() && milestoneDate.getDate() === currentDate.getDate()) {
 
-              let activeMilestone = milestone.number
+                activeMilestone = milestone.number
      
                 // Get list of Issues in the current milestone
                 let {data: milestoneIssues} = await github.rest.issues.listForRepo({
