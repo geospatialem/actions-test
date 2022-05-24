@@ -42,7 +42,7 @@ jobs:
             const currentDay = currentDate.getDate()
             const currentYear = currentDate.getFullYear()
             const milestoneIssueList = []
-            const activeMilestone
+            const activeMilestone = 0
 
             // Get current milestone
             for (const milestone of milestones) {
