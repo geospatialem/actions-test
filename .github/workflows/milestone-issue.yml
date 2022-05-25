@@ -23,7 +23,7 @@ jobs:
           script: |
             // Get all milestones
             const {data: milestones} = await github.rest.issues.listMilestones({
-              accept: 'Authorization: token ' + ${{ secrets.github_token }},
+              accept: 'Authorization: token ' + $GITHUB_TOKEN,
               repo: context.repo.repo,
               owner: context.repo.owner,
               state: 'open',
