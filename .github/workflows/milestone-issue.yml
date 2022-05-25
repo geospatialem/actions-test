@@ -21,6 +21,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.github_token }}
         with:
           script: |
+            // Authorize
+            await github.rest.authenticate({
+              type: 'token',
+              token: ${{ secrets.github_token }}
+            })
+
             // Get all milestones
             const {data: milestones} = await github.rest.issues.listMilestones({
               accept: 'application/vnd.github.v3+json',
