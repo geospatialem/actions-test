@@ -6,8 +6,8 @@ on:
       - "master"
 
 permissions:
-  contents: write
-  issues: read 
+  contents: read
+  issues: write 
 
 jobs:
   add-content:
