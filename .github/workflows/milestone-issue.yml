@@ -22,7 +22,7 @@ jobs:
         with:
           script: |
             // Authorize
-            await curl -i -u geospatialem:${{ secrets.github_token }} https://api.github.com/repos/ArcGIS/afd-calcite-documentation
+            curl -i -u geospatialem:${{ secrets.github_token }} https://api.github.com/repos/geospatialem/actions-test
 
             // Get all milestones
             const {data: milestones} = await github.rest.issues.listMilestones({
