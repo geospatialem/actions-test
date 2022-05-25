@@ -22,17 +22,16 @@ jobs:
         with:
           script: |
             // TODO: Authorize
+
             // Get all milestones
             const {data: milestones} = await github.rest.issues.listMilestones({
               accept: 'application/vnd.github.v3+json',
-              token: "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",
               repo: context.repo.repo,
               owner: context.repo.owner,
               state: 'open',
               sort: 'due_on',
               per_page: 100
             })
-            console.log(milestones.token)
 
             if (!milestones.length) {
               console.log('There are no open milestones in this repo, ending run.')
@@ -63,7 +62,6 @@ jobs:
                 let {data: milestonePrs} = await github.rest.pulls.list({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
-                  token: "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",
                   state: 'closed',
                   direction: 'desc',
                   per_page: 100
@@ -84,7 +82,6 @@ jobs:
             await github.rest.issues.create({
               repo: context.repo.repo,
               owner: context.repo.owner,
-              token: "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",
               labels: ['Documentation', '6 - Ready to Deploy'],
               title: "Docs: " + currentMonth + " " + currentDay + " Release Update 🚀",
               milestone: activeMilestone,
