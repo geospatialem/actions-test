@@ -21,9 +21,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.github_token }}
         with:
           script: |
-            // Authorize
-            curl -i -u geospatialem:${{ secrets.github_token }} https://api.github.com/repos/geospatialem/actions-test
-
+            // TODO: Authorize
             // Get all milestones
             const {data: milestones} = await github.rest.issues.listMilestones({
               accept: 'application/vnd.github.v3+json',
