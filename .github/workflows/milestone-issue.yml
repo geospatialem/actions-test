@@ -24,7 +24,7 @@ jobs:
             // Get all milestones
             const {data: milestones} = await curl --request GET \
             --header 'authorization: Token ${{ secrets.github_token }}' \
-            --url https://api.github.com/repos/${{ github_repository }}/milestones?state=open&sort=due_on&per_page=100
+            --url https://api.github.com/repos/geospatialem/actions-test/milestones?state=open&sort=due_on&per_page=100
 
             if (!milestones.length) {
               console.log('There are no open milestones in this repo, ending run.')
@@ -54,7 +54,7 @@ jobs:
                 // Get list of PRs in the current milestone
                 let {data: milestonePrs} = await curl --request GET \
                 --header 'authorization: Token ${{ secrets.github_token }}' \
-                --url https://api.github.com/repos/${{ github_repository }}/pulls?state=closed&per_page=100&direction=desc
+                --url https://api.github.com/repos/geospatialem/actions-test/pulls?state=closed&per_page=100&direction=desc
 
                 // List PRs for each issue associated with the milestone
                 for (let milestonePr of milestonePrs) {
