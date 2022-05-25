@@ -25,6 +25,7 @@ jobs:
             // Get all milestones
             const {data: milestones} = await github.rest.issues.listMilestones({
               accept: 'application/vnd.github.v3+json',
+              token: ${{ secrets.github_token }},
               repo: context.repo.repo,
               owner: context.repo.owner,
               state: 'open',
@@ -62,6 +63,7 @@ jobs:
                 let {data: milestonePrs} = await github.rest.pulls.list({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
+                  token: ${{ secrets.github_token }},
                   state: 'closed',
                   direction: 'desc',
                   per_page: 100
@@ -82,6 +84,7 @@ jobs:
             await github.rest.issues.create({
               repo: context.repo.repo,
               owner: context.repo.owner,
+              token: ${{ secrets.github_token }},
               labels: ['Documentation', '6 - Ready to Deploy'],
               title: "Docs: " + currentMonth + " " + currentDay + " Release Update 🚀",
               milestone: activeMilestone,
