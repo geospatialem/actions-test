@@ -18,17 +18,13 @@ jobs:
 
       - uses: actions/github-script@v6
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
+          GITHUB_TOKEN: ${{ secrets.github_token }}
         with:
           script: |
             // Get all milestones
-            const {data: milestones} = await github.rest.issues.listMilestones({
-              repo: context.repo.repo,
-              owner: context.repo.owner,
-              state: 'open',
-              sort: 'due_on',
-              per_page: 100
-            })
+            const {data: milestones} = await curl --request GET \
+            --header 'authorization: Token ${{ secrets.github_token }}' \
+            --url https://api.github.com/repos/${{ github_repository }}/milestones?state=open&sort=due_on&per_page=100
 
             if (!milestones.length) {
               console.log('There are no open milestones in this repo, ending run.')
@@ -56,13 +52,9 @@ jobs:
                 activeMilestone = milestone.number
      
                 // Get list of PRs in the current milestone
-                let {data: milestonePrs} = await github.rest.pulls.list({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  state: 'closed',
-                  direction: 'desc',
-                  per_page: 100
-                })
+                let {data: milestonePrs} = await curl --request GET \
+                --header 'authorization: Token ${{ secrets.github_token }}' \
+                --url https://api.github.com/repos/${{ github_repository }}/pulls?state=closed&per_page=100&direction=desc
 
                 // List PRs for each issue associated with the milestone
                 for (let milestonePr of milestonePrs) {
