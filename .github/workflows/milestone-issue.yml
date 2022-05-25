@@ -25,7 +25,10 @@ jobs:
 
             // Get all milestones
             const {data: milestones} = await github.rest.issues.listMilestones({
-              accept: 'application/vnd.github.v3+json',
+              headers: {
+                Authorize: 'token ' + ${{ secrets.github_token }},
+                accept: 'application/vnd.github.v3+json',
+              },
               repo: context.repo.repo,
               owner: context.repo.owner,
               state: 'open',
@@ -60,6 +63,9 @@ jobs:
      
                 // Get list of PRs in the current milestone
                 let {data: milestonePrs} = await github.rest.pulls.list({
+                  headers: {
+                    Authorize: 'token ' + ${{ secrets.github_token }},
+                  },
                   owner: context.repo.owner,
                   repo: context.repo.repo,
                   state: 'closed',
@@ -80,6 +86,9 @@ jobs:
 
             // Create the issue
             await github.rest.issues.create({
+              headers: {
+                Authorize: 'token ' + ${{ secrets.github_token }},
+              },
               repo: context.repo.repo,
               owner: context.repo.owner,
               labels: ['Documentation', '6 - Ready to Deploy'],
