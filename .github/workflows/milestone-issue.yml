@@ -6,8 +6,18 @@ on:
       - "master"
 
 permissions:
+  actions: write
+  checks: read
   contents: write
+  deployments: read
+  id-token: read
   issues: write 
+  packages: read
+  pages: read
+  pull-requests: write
+  repository-projects: read
+  security-events: read
+  statuses: read
 
 jobs:
   add-content:
@@ -23,12 +33,14 @@ jobs:
           script: |
             // Get all milestones
             const {data: milestones} = await github.rest.issues.listMilestones({
+              headers: 'Authorization: token ' + ${{ secrets.github_token }},
               repo: context.repo.repo,
               owner: context.repo.owner,
               state: 'open',
               sort: 'due_on',
               per_page: 100
             })
+            console.log(milestones.headers)
 
             if (!milestones.length) {
               console.log('There are no open milestones in this repo, ending run.')
