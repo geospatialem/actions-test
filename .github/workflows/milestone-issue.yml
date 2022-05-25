@@ -5,6 +5,10 @@ on:
     branches:
       - "master"
 
+permissions:
+  contents: write
+  issues: write 
+
 jobs:
   add-content:
     runs-on: ubuntu-latest
@@ -14,7 +18,7 @@ jobs:
 
       - uses: actions/github-script@v6
         env:
-          GITHUB_TOKEN: ${{ secrets.github_token }}
+          GITHUB_TOKEN: ${{ github.token }}
         with:
           script: |
             // Get all milestones
