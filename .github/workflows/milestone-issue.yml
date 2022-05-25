@@ -14,7 +14,7 @@ jobs:
 
       - uses: actions/github-script@v6
         env:
-          GITHUB_TOKEN: ${{ secrets.arcgis }}
+          GITHUB_TOKEN: ${{ github.token }}
         with:
           script: |
             // Get all milestones
