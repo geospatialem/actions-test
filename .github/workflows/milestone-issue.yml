@@ -5,23 +5,30 @@ on:
     branches:
       - "master"
 
-permissions:
-  contents: write
-  issues: write 
-
 jobs:
-  add-content:
+  checkout:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
+  create-release:
+      needs: checkout
+      runs-on: ubuntu-latest
+      permissions:
+        contents: write
+        issues: write 
+      steps:
       - uses: actions/github-script@v6
-        env:
-          GITHUB_TOKEN: ${{ secrets.github_token }}
         with:
+          github-token: ${{ secrets.github_token }}
           script: |
-            // TODO: Authorize
+            // Resource (?): https://www.npmjs.com/package/@octokit/rest/v/16.9.0#Authentication
+            // Resource #2 (?): https://docs.github.com/en/rest/overview/troubleshooting#basic-authentication-errors
+            github.rest.authenticate({
+              type: 'token',
+              token: ${{ secrets.github_token }}
+            })
 
             // Get all milestones
             const {data: milestones} = await github.rest.issues.listMilestones({
