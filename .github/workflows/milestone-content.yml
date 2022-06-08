@@ -1,8 +1,9 @@
 name: Weekly release issue
 
 on:
-  schedule:
-    - cron: "59 7 * * 3"
+  push:
+    branches:
+      - "master"
 
 permissions:
   contents: write
