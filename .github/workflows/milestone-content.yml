@@ -3,7 +3,7 @@ name: Weekly release issue
 on:
   push:
     branches:
-      - "master"
+      - "milestone"
 
 permissions:
   contents: write

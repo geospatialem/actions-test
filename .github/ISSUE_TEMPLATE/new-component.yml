@@ -42,7 +42,10 @@ body:
       description: Code snippet, link to a similar product, suggestions, etc.
     validations:
       required: false
-  - type: markdown
+  - type: input
+    id: calcite-contact
     attributes:
-      value: |
-        cc @geospatialem
+      label: Calcite team contact
+      value: cc @geospatialem
+    validations:
+      required: true
