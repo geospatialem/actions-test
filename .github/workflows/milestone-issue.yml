@@ -23,10 +23,6 @@ jobs:
         with:
           github-token: ${{ secrets.github_token }}
           script: |
-            // TODO: Authentication
-            // Resource (?): https://www.npmjs.com/package/@octokit/rest/v/16.9.0#Authentication
-            // Resource #2 (?): https://docs.github.com/en/rest/overview/troubleshooting#basic-authentication-errors
-
             // Get all milestones
             const {data: milestones} = await github.rest.issues.listMilestones({
               accept: 'application/vnd.github.v3+json',
